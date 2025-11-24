@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -26,6 +27,7 @@ const formSchema = z.object({
 
 export default function ContactFooter() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,13 +36,41 @@ export default function ContactFooter() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Transmission Sent",
-      description: "We have received your signal. Stand by for response.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      // Using Formspree - replace 'your-form-id' with actual Formspree form ID
+      const response = await fetch("https://formspree.io/f/xovqkgbo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          message: values.message,
+          _replyto: values.email,
+          _subject: "New Contact Form Submission - Architect Portfolio",
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "Thank you for reaching out. I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Failed to Send Message",
+        description: "Please try again or contact directly at rishabh.soni_11@zohomail.in",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -60,11 +90,11 @@ export default function ContactFooter() {
               Initiate a collaboration. We are ready to architect your next digital milestone.
             </p>
           </div>
-          
+
           <div className="hidden md:block mt-12 space-y-2 font-mono text-xs text-background/40 uppercase tracking-widest">
-            <p>San Francisco, CA</p>
-            <p>Tokyo, JP</p>
-            <p>Berlin, DE</p>
+            <p>Pune, India</p>
+            <p>rishabh.soni_11@zohomail.in</p>
+            <p>+91 7879761418</p>
           </div>
         </div>
 
@@ -79,9 +109,9 @@ export default function ContactFooter() {
                   <FormItem>
                     <FormLabel className="text-background/60 font-mono uppercase tracking-widest text-xs">System ID (Email)</FormLabel>
                     <FormControl>
-                      <Input 
-                        placeholder="enter@coordinates.com" 
-                        {...field} 
+                      <Input
+                        placeholder="enter@coordinates.com"
+                        {...field}
                         className="bg-transparent border-0 border-b border-background/20 rounded-none px-0 py-6 text-xl md:text-2xl font-display placeholder:text-background/20 focus-visible:ring-0 focus-visible:border-background transition-colors"
                       />
                     </FormControl>
@@ -89,7 +119,7 @@ export default function ContactFooter() {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="message"
@@ -97,9 +127,9 @@ export default function ContactFooter() {
                   <FormItem>
                     <FormLabel className="text-background/60 font-mono uppercase tracking-widest text-xs">Transmission Data</FormLabel>
                     <FormControl>
-                      <Textarea 
-                        placeholder="Describe your architectural requirements..." 
-                        {...field} 
+                      <Textarea
+                        placeholder="Describe your architectural requirements..."
+                        {...field}
                         className="bg-transparent border-0 border-b border-background/20 rounded-none px-0 py-6 text-xl md:text-2xl font-heading min-h-[150px] resize-none placeholder:text-background/20 focus-visible:ring-0 focus-visible:border-background transition-colors"
                       />
                     </FormControl>
@@ -108,22 +138,24 @@ export default function ContactFooter() {
                 )}
               />
 
-              <Button 
-                type="submit" 
-                className="group bg-background text-foreground hover:bg-background/90 rounded-full px-8 py-6 text-lg font-display font-bold uppercase tracking-tight transition-all w-full md:w-auto flex items-center justify-center gap-2"
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="group bg-background text-foreground hover:bg-background/90 disabled:opacity-50 disabled:cursor-not-allowed rounded-full px-8 py-6 text-lg font-display font-bold uppercase tracking-tight transition-all w-full md:w-auto flex items-center justify-center gap-2"
               >
-                Transmit Signal
+                {isSubmitting ? "Sending..." : "Transmit Signal"}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </form>
           </Form>
         </div>
       </div>
-      
+
       {/* Mobile Footer Info */}
       <div className="md:hidden mt-16 pt-8 border-t border-background/10 space-y-2 font-mono text-xs text-background/40 uppercase tracking-widest text-center">
-        <p>San Francisco • Tokyo • Berlin</p>
-        <p>© 2025 Structural</p>
+        <p>Pune, India</p>
+        <p>rishabh.soni_11@zohomail.in</p>
+        <p>+91 7879761418</p>
       </div>
     </footer>
   );
