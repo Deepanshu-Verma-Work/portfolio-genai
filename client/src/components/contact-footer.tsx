@@ -65,7 +65,7 @@ export default function ContactFooter() {
     } catch (error) {
       toast({
         title: "Failed to Send Message",
-        description: "Please try again or contact directly at rishabh.soni_11@zohomail.in",
+        description: "Please try again or contact directly at deepanshu.verma@zohomail.in",
         variant: "destructive",
       });
     } finally {
@@ -93,8 +93,8 @@ export default function ContactFooter() {
 
           <div className="hidden md:block mt-12 space-y-2 font-mono text-xs text-background/40 uppercase tracking-widest">
             <p>Pune, India</p>
-            <p>rishabh.soni_11@zohomail.in</p>
-            <p>+91 7879761418</p>
+            <p>deepanshu.verma@zohomail.in</p>
+            <p>+91 7987170923</p>
           </div>
         </div>
 
@@ -154,8 +154,8 @@ export default function ContactFooter() {
       {/* Mobile Footer Info */}
       <div className="md:hidden mt-16 pt-8 border-t border-background/10 space-y-2 font-mono text-xs text-background/40 uppercase tracking-widest text-center">
         <p>Pune, India</p>
-        <p>rishabh.soni_11@zohomail.in</p>
-        <p>+91 7879761418</p>
+        <p>deepanshu.verma@zohomail.in</p>
+        <p>+91 7987170923</p>
       </div>
     </footer>
   );

@@ -205,8 +205,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Author
 
-**Rishabh Soni**
-- Email: rishabh.soni_11@zohomail.in
+**Deepanshu Verma**
+- Email: deepanshu.verma@zohomail.in
 - Location: Pune, India
 - Phone: +91 7879761418
 

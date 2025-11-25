@@ -23,7 +23,7 @@ export default function Contact() {
           >
             <Mail className="w-6 h-6 mb-4 opacity-50 group-hover:opacity-100 transition-opacity" />
             <h3 className="font-mono text-xs uppercase tracking-widest mb-2 text-muted-foreground">Email</h3>
-            <p className="text-xl font-display font-bold">rishabh.soni_11@zohomail.in</p>
+            <p className="text-xl font-display font-bold">deepanshu.verma@zohomail.in</p>
           </motion.div>
 
           <motion.div

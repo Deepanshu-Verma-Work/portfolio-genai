@@ -59,7 +59,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] leading-[0.8] font-display font-bold tracking-tighter uppercase text-foreground mix-blend-difference"
+            className="mt-32 text-[12vw] leading-[0.8] font-display font-bold tracking-tighter uppercase text-foreground opacity-30"
           >
             System<br />
             Architect
@@ -70,7 +70,7 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-12 max-w-md ml-auto mr-0 md:mr-24"
           >
-            <p className="font-heading text-lg md:text-xl leading-relaxed text-muted-foreground">
+            <p className="font-heading text-lg md:text-xl leading-relaxed text-muted-foreground opacity-60">
               Designing resilient digital structures. Bridging the gap between abstract logic and concrete implementation.
             </p>
           </motion.div>
